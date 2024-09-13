@@ -1,4 +1,7 @@
 macOS Unlocker V3.0 for VMware Workstation
+
+** Fixed version for VMware Workstation Tools. Solves the problem with not found darwin tools for last version
+
 ==========================================
 
 **************************************************************
