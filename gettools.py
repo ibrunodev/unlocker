@@ -30,6 +30,7 @@ import shutil
 import tarfile
 import zipfile
 import time
+from pprint import pprint
 
 ARCH = 'x86_x64'
 
@@ -112,25 +113,32 @@ def main():
 	# Get the list of Fusion releases
 	# And get the last item in the ul/li tags
 	
-	response = urlopen(url)
-	html = response.read()
-	parser.clean()
-	parser.feed(str(html))
-	url = url + parser.HTMLDATA[-1] + '/'
-	parser.clean()
+	# response = urlopen(url)
+	# html = response.read()
+	# parser.clean()
+	# parser.feed(str(html))
+	# url = url + parser.HTMLDATA[-1] + '/'
+	# parser.clean()
 
-	# Open the latest release page
-	# And build file URL
-	response = urlopen(url)
-	html = response.read()
-	parser.feed(str(html))
-	
-	lastVersion = parser.HTMLDATA[-1]
-	
-	parser.clean()
+	## Fixed 13.5.2 as last release with darwin tools
+	urlcoretar = url + "13.5.2/23775688/universal/core/com.vmware.fusion.zip.tar"
 
-	urlcoretar = url + lastVersion + '/universal/core/com.vmware.fusion.zip.tar'
-			
+	# # Open the latest release page
+	# # And build file URL
+	# response = urlopen(url)
+	# html = response.read()
+	# parser.feed(str(html))
+	
+	# lastVersion = parser.HTMLDATA[-1]
+	
+	# print("Version found: " + lastVersion)
+	# pprint(parser.HTMLDATA)
+	# parser.clean()
+
+	# urlcoretar = url + lastVersion + '/universal/core/com.vmware.fusion.zip.tar'
+	
+	print("Getting tools: " + urlcoretar)
+
 	# Get the main core file
 	try:
 		urlretrieve(urlcoretar, convertpath(dest + '/tools/com.vmware.fusion.zip.tar'), reporthook)
